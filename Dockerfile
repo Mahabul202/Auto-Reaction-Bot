@@ -1,8 +1,14 @@
-FROM python:3.12
+FROM python:3.11-slim
 
 WORKDIR /app
-COPY . /app
 
-RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
 
-CMD ["python", "-m", "bot"]
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY YOUR_FILE_NAME.py .
+
+CMD ["python", "Mahabul201.py"]"]
