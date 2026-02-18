@@ -1,10 +1,14 @@
 from os import environ as env
 
 class Telegram:
-    API_ID = int(env.get("API_ID", "23787292"))
-    API_HASH = env.get("API_HASH", "679f843b6d9485bead1b81852a9634f4")
-    BOT_TOKEN = env.get("BOT_TOKEN", "8495938883:AAG0Kiq7MkK4shSLqDJC40rHUpZz9dkOpuo")
-    BOT_USERNAME = env.get("BOT_USERNAME", "Shhs7syshsg_Bot")
+    # This logic ensures that if the variable is empty OR missing, it uses the default
+    _api_id = env.get("API_ID")
+    API_ID = int(_api_id) if _api_id and _api_id.strip() else 23787292
+    
+    API_HASH = env.get("API_HASH") or "679f843b6d9485bead1b81852a9634f4"
+    BOT_TOKEN = env.get("BOT_TOKEN") or "8495938883:AAG0Kiq7MkK4shSLqDJC40rHUpZz9dkOpuo"
+    # ... rest of your code
+    
     EMOJIS = [
         "👍", "👎", "❤", "🔥", 
         "🥰", "👏", "😁", "🤔",
